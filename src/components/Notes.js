@@ -10,19 +10,19 @@ const Notes = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get('https://mjoycer-dormie-backend.herokuapp.com//users', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+        axios.get('https://mjoycer-dormie-backend.herokuapp.com/users', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
             dispatch({ type: 'SET_USERS', payload: res.data });
         });
 
-        axios.get('https://mjoycer-dormie-backend.herokuapp.com//notes', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+        axios.get('https://mjoycer-dormie-backend.herokuapp.com/notes', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
             dispatch({ type: 'SET_NOTES', payload: res.data });
         });
 
     }, [currentUser.token, dispatch]);
 
     const removeNote = (e) => {
-        axios.delete(`https://mjoycer-dormie-backend.herokuapp.com//notes/${e.target.value}`, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
-            axios.get('https://mjoycer-dormie-backend.herokuapp.com//notes', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+        axios.delete(`https://mjoycer-dormie-backend.herokuapp.com/notes/${e.target.value}`, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+            axios.get('https://mjoycer-dormie-backend.herokuapp.com/notes', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
                 dispatch({ type: 'SET_NOTES', payload: res.data });
                 console.log(res.data);
             });
