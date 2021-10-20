@@ -20,21 +20,19 @@ const NewChoreForm = () => {
         setNewChore({ ...newChore, [name]: e.target.value })
     }
 
-    // console.log(allUsers);
-
     const handleSubmit = (e) => {
         e.preventDefault();
         e.target.reset();
         setTaggedUsers([]);
         setAllUsers(users);
 
-        axios.post('https://mjoycer-dormie-backend.herokuapp.com//chores',
+        axios.post('https://mjoycer-dormie-backend.herokuapp.com/chores',
             {
                 name: newChore.name,
                 deadline: newChore.deadline,
                 users: taggedUsers
             }, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
-                axios.get('https://mjoycer-dormie-backend.herokuapp.com//chores', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+                axios.get('https://mjoycer-dormie-backend.herokuapp.com/chores', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
                     console.log(res.data);
                     dispatch({ type: 'SET_CHORES', payload: res.data });
                 });
