@@ -16,8 +16,8 @@ const NewNoteForm = () => {
         e.preventDefault();
         e.target.reset();
 
-        axios.post('https://mjoycer-dormie-backend.herokuapp.com//notes', { author: currentUser.id, message: newNote }, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
-            axios.get('https://mjoycer-dormie-backend.herokuapp.com//notes', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+        axios.post('https://mjoycer-dormie-backend.herokuapp.com/notes', { author: currentUser.id, message: newNote }, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+            axios.get('https://mjoycer-dormie-backend.herokuapp.com/notes', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
                 dispatch({ type: 'SET_NOTES', payload: res.data });
             })
         }
