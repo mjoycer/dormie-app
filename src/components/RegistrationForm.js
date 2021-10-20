@@ -19,12 +19,12 @@ const RegistrationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post('https://mjoycer-dormie-backend.herokuapp.com//users/email-exists', { email: newUser.email }).then(res => {
+        axios.post('https://mjoycer-dormie-backend.herokuapp.com/users/email-exists', { email: newUser.email }).then(res => {
             console.log(res.data);
 
             (!res.data) ?
-                axios.post('https://mjoycer-dormie-backend.herokuapp.com//users/register', newUser).then(res => {
-                    axios.post('https://mjoycer-dormie-backend.herokuapp.com//users/login', { email: newUser.email, password: newUser.password }).then(res => {
+                axios.post('https://mjoycer-dormie-backend.herokuapp.com/users/register', newUser).then(res => {
+                    axios.post('https://mjoycer-dormie-backend.herokuapp.com/users/login', { email: newUser.email, password: newUser.password }).then(res => {
                         dispatch({ type: 'LOGIN', payload: res.data.auth });
                         console.log(res.data);
                         history.push('/home');
