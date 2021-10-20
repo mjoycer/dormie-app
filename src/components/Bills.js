@@ -11,11 +11,11 @@ const Bills = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get('https://mjoycer-dormie-backend.herokuapp.com//users', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+        axios.get('https://mjoycer-dormie-backend.herokuapp.com/users', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
             dispatch({ type: 'SET_USERS', payload: res.data });
         });
 
-        axios.get(`https://mjoycer-dormie-backend.herokuapp.com//bills/`, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+        axios.get(`https://mjoycer-dormie-backend.herokuapp.com/bills/`, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
             dispatch({ type: 'SET_BILLS', payload: res.data });
             console.log(res.data);
         });
@@ -28,13 +28,13 @@ const Bills = () => {
         let removePaidUser = currentBill.unpaidUsers.filter(user => user !== currentUser.id);
         let updatedPaidUsers = [...currentBill.paidUsers, currentUser.id]
 
-        axios.put(`https://mjoycer-dormie-backend.herokuapp.com//bills/${e.target.value}`,
+        axios.put(`https://mjoycer-dormie-backend.herokuapp.com/bills/${e.target.value}`,
             {
                 unpaidUsers: removePaidUser,
                 paidUsers: updatedPaidUsers
             },
             { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
-                axios.get('https://mjoycer-dormie-backend.herokuapp.com//bills',
+                axios.get('https://mjoycer-dormie-backend.herokuapp.com/bills',
                     { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
                         dispatch({ type: 'SET_BILLS', payload: res.data });
                     });
