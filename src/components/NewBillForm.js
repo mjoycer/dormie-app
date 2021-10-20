@@ -38,7 +38,7 @@ const NewBillForm = () => {
         setTaggedUsers([]);
         setAllUsers(users);
 
-        axios.post('https://mjoycer-dormie-backend.herokuapp.com//bills',
+        axios.post('https://mjoycer-dormie-backend.herokuapp.com/bills',
             {
                 name: newBill.name,
                 amount: newBill.amount,
@@ -46,7 +46,7 @@ const NewBillForm = () => {
                 isNecessity: isNecessity,
                 unpaidUsers: taggedUsers
             }, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
-                axios.get('https://mjoycer-dormie-backend.herokuapp.com//bills', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+                axios.get('https://mjoycer-dormie-backend.herokuapp.com/bills', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
                     console.log(res.data);
                     dispatch({ type: 'SET_BILLS', payload: res.data });
                 });
