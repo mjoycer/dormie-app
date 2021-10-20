@@ -10,19 +10,19 @@ const Chores = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get('https://mjoycer-dormie-backend.herokuapp.com//users', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+        axios.get('https://mjoycer-dormie-backend.herokuapp.com/users', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
             dispatch({ type: 'SET_USERS', payload: res.data });
         });
 
-        axios.get('https://mjoycer-dormie-backend.herokuapp.com//chores', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+        axios.get('https://mjoycer-dormie-backend.herokuapp.com/chores', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
             dispatch({ type: 'SET_CHORES', payload: res.data });
         });
 
     }, []);
 
     const pendingToDone = (e) => {
-        axios.put(`https://mjoycer-dormie-backend.herokuapp.com//chores/${e.target.value}`, { status: 'Done' }, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
-            axios.get('https://mjoycer-dormie-backend.herokuapp.com//chores', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+        axios.put(`https://mjoycer-dormie-backend.herokuapp.com/chores/${e.target.value}`, { status: 'Done' }, { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
+            axios.get('https://mjoycer-dormie-backend.herokuapp.com/chores', { headers: { Authorization: `Bearer ${currentUser.token}` } }).then(res => {
                 dispatch({ type: 'SET_CHORES', payload: res.data });
             });
         });
