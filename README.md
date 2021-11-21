@@ -20,9 +20,7 @@ the communication between roommates.
  - Users can add bills and tag other users that need to pay the certain bill.
  - Each bill can be tagged as paid.
 
- OTHER FEATURES 
-   --
-
+**OTHER FEATURES**
 - Authentication (Log-in/Registration)
 
 
